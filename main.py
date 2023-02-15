@@ -36,8 +36,8 @@ class ConverterCSVToSQL:
         except Exception as error:
             raise error
 
-    @staticmethod
-    def __clear_line(line):
+    @classmethod
+    def __clear_line(cls, line):
         try:
             line = tuple(map(lambda x: x.replace("'", "''"), line))
             line = str(line).replace("'NULL'", 'NULL')
@@ -48,4 +48,7 @@ class ConverterCSVToSQL:
 
 
 if __name__ == '__main__':
-    ConverterCSVToSQL(path_file='test.csv', output_file='result.sql').show()
+    
+    convert = ConverterCSVToSQL(path_file='test.csv', output_file='result.sql', delimiter=';')
+    
+    convert.show()
